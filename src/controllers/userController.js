@@ -1,3 +1,4 @@
+const User = require('../models/user');
 const userService = require('../services/userservices')
 
 const userController = {
@@ -14,9 +15,9 @@ const userController = {
             })
         }
     },
-    update: async (req, res) =>{
+    update: async (req, res) => {
         try {
-            const user = await userService.update(req.params.id, req.body);
+            const user = await userService.updade(req.params.id, req.body);
             if(!user){
                 return res.status(400).json({
                     msg:"User não encontrado"
@@ -65,14 +66,15 @@ const userController = {
         },
     delete: async (req,res) => {
             try {
-                await userController.delete(req.params.id);
+                const user = await userService.delete(req.params.id);
                 if(!user) {
                     return res.status(400).json({
                         msg: 'Usuario nao encontado'
                     })
                 }
-                return res.statusa(200).json({
-                    msg: 'Usuario delete com sucesso!'
+                return res.status(200).json({
+                    msg: 'Usuario delete com sucesso!',
+                    user
                 });
             } catch (error) {
                 return res.status(500).json({
