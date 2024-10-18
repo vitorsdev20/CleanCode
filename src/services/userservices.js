@@ -8,7 +8,7 @@ const userService = {
             throw new Error('Ocorreu um erro ao criarr User')
         }
     },
-    updade: async (id, userToUpdate) => {
+    update: async (id, userToUpdate) => {
         try{
             const user = await User.findByPk(id);
             if(!user) {

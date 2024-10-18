@@ -4,15 +4,17 @@ const userController = require('../controllers/userController')
 
 const router = Router();
 
+const {validateUser, validateUserId} = require("../middlewares/validadeUser")
 
 
-router.post('/', userController.create );
 
-router.put('/:id', userController.update );
+router.post('/',validateUser , userController.create );
 
-router.delete('/:id', userController.delete);
+router.put('/:id' ,validateUser, validateUserId, userController.update );
 
-router.get('/:id', userController.getOne);
+router.delete('/:id',validateUserId, userController.delete);
+
+router.get('/:id',validateUserId, userController.getOne);
 
 router.get('/', userController.getAll);
 

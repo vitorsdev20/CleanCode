@@ -17,7 +17,7 @@ const userController = {
     },
     update: async (req, res) => {
         try {
-            const user = await userService.updade(req.params.id, req.body);
+            const user = await userService.update(req.params.id, req.body);
             if(!user){
                 return res.status(400).json({
                     msg:"User não encontrado"
